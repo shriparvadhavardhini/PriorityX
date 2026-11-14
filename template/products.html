@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Products — PriorityX{% endblock %}
+{% block content %}
+
+<section class="page-header">
+  <div class="breadcrumb">
+    <a href="{{ url_for('home') }}">PriorityX</a> <span>/</span> <span id="categoryLabel">Products</span>
+  </div>
+  <h1 id="categoryTitle">Products</h1>
+
+  <div class="filter-bar">
+    <button class="filter-chip active" data-cat="">All</button>
+    <div id="filterChips" class="filter-chip-group"></div>
+  </div>
+</section>
+
+<section class="product-grid" id="productGrid">
+  <!-- injected by script.js -->
+</section>
+
+<div class="empty-state" id="emptyState" style="display:none;">
+  <p>No products found in this category.</p>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  const INITIAL_CATEGORY = {{ category|tojson }};
+  document.addEventListener("DOMContentLoaded", () => initProductsPage(INITIAL_CATEGORY));
+</script>
+{% endblock %}

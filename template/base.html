@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}PriorityX — Shop Smarter. Deliver Faster.{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% block extra_head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+
+<div class="bg-grid"></div>
+<div class="bg-glow bg-glow-1"></div>
+<div class="bg-glow bg-glow-2"></div>
+
+<header class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="{{ url_for('home') }}" class="logo">Priority<span class="logo-dot">X</span></a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('home') }}#categories">Categories</a>
+      <a href="{{ url_for('cart_page') }}">Cart</a>
+      {% if user %}
+        <a href="{{ url_for('profile_page') }}">Profile</a>
+      {% else %}
+        <a href="{{ url_for('login_page') }}">Login</a>
+      {% endif %}
+    </nav>
+
+    <div class="nav-right">
+      <span class="express-pill">⚡ Express Delivery</span>
+      <a href="{{ url_for('cart_page') }}" class="cart-pill" id="cartPill">
+        🛒 Cart (<span id="cartCount">0</span>)
+      </a>
+      {% if user %}
+        <a href="{{ url_for('profile_page') }}" class="user-pill">👤 {{ user.username }}</a>
+      {% endif %}
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="{{ url_for('home') }}">Home</a>
+  <a href="{{ url_for('home') }}#categories">Categories</a>
+  <a href="{{ url_for('cart_page') }}">Cart (<span id="cartCountMobile">0</span>)</a>
+  {% if user %}
+    <a href="{{ url_for('profile_page') }}">Profile</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+  {% else %}
+    <a href="{{ url_for('login_page') }}">Login</a>
+    <a href="{{ url_for('register_page') }}">Register</a>
+  {% endif %}
+</div>
+
+<main class="page-enter">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">Priority<span class="logo-dot">X</span></div>
+    <p>Your next-generation shopping experience.</p>
+    <p class="footer-copy">© 2026 PriorityX. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% block extra_scripts %}{% endblock %}
+</body>
+</html>

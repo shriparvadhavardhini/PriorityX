@@ -1,0 +1,2 @@
+Optional: drop .glb/.gltf 3D models here if you extend the AR Preview page
+with Three.js. Not required for the app to function.

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Product — PriorityX{% endblock %}
+{% block content %}
+
+<section class="product-detail" id="productDetail">
+  <div class="pd-left">
+    <div class="pd-image-stage">
+      <img id="pdImage" class="pd-image-float" src="" alt="Product Image" style="width: 100%; max-width: 300px; height: auto; object-fit: contain;">
+    </div>
+  </div>
+
+  <div class="pd-right glass-panel">
+    <div class="pd-express" id="pdExpress" style="display:none;">⚡ EXPRESS</div>
+    <h1 id="pdName">Loading…</h1>
+    <div class="pd-price" id="pdPrice"></div>
+    <p class="pd-description" id="pdDescription"></p>
+
+    <div class="pd-delivery" id="pdDelivery" style="display:none;">
+      <div class="pd-delivery-badge">⚡ EXPRESS DELIVERY</div>
+      <div class="pd-delivery-info">
+        <span>Estimated Delivery</span>
+        <strong id="pdDeliveryDate">—</strong>
+        <span id="pdDeliveryTime"></span>
+      </div>
+    </div>
+
+    <div class="pd-qty">
+      <span>Quantity</span>
+      <div class="qty-control">
+        <button id="qtyMinus">−</button>
+        <span id="qtyValue">1</span>
+        <button id="qtyPlus">+</button>
+      </div>
+    </div>
+
+    <div class="pd-actions">
+      <button class="btn btn-glass" id="addToCartBtn">ADD TO CART</button>
+      <button class="btn btn-primary" id="buyNowBtn">BUY NOW</button>
+    </div>
+
+    <a href="#" class="ar-link" id="arLink"></a>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  const PRODUCT_ID = {{ product_id|tojson }};
+  document.addEventListener("DOMContentLoaded", () => initProductDetailPage(PRODUCT_ID));
+</script>
+{% endblock %}

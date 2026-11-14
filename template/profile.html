@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}My Profile — PriorityX{% endblock %}
+{% block content %}
+
+<section class="page-header">
+  <h1>My Profile</h1>
+</section>
+
+<section class="profile-layout">
+  <div class="profile-card glass-panel">
+    <div class="profile-avatar">👤</div>
+    <h2>{{ user.username }}</h2>
+    <div class="profile-info">
+      <div class="profile-info-row"><span>Username</span><strong>{{ user.username }}</strong></div>
+      <div class="profile-info-row"><span>Email</span><strong>{{ user.email }}</strong></div>
+      <div class="profile-info-row"><span>User ID</span><strong>#{{ user.id }}</strong></div>
+    </div>
+    <a href="{{ url_for('logout') }}" class="btn btn-glass btn-full">LOGOUT</a>
+  </div>
+
+  <div class="profile-panels">
+    <div class="dash-grid">
+      <div class="dash-card glass-panel">
+        <div class="dash-icon">👤</div>
+        <h3>My Profile</h3>
+        <p>Manage your personal account information.</p>
+      </div>
+      <a href="{{ url_for('cart_page') }}" class="dash-card glass-panel dash-link">
+        <div class="dash-icon">🛒</div>
+        <h3>Shopping Cart</h3>
+        <p>View items currently in your cart.</p>
+      </a>
+      <div class="dash-card glass-panel">
+        <div class="dash-icon">📦</div>
+        <h3>My Orders</h3>
+        <p>{{ orders|length }} order{{ '' if orders|length == 1 else 's' }} placed</p>
+      </div>
+    </div>
+
+    <div class="orders-section">
+      <h3>Order History</h3>
+      {% if orders %}
+        {% for order in orders %}
+        <div class="order-card glass-panel">
+          <div class="order-card-head">
+            <span>Order #{{ order.id }}</span>
+            <span class="order-status">{{ order.status }}</span>
+          </div>
+          <div class="order-card-items">
+            {% for item in order.line_items %}
+            <div class="order-line">
+              <span>{{ item.product_name }} × {{ item.quantity }}</span>
+              <span>₹{{ item.price * item.quantity }}</span>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="order-card-foot">
+            <span>{{ order.created_at }}</span>
+            <strong>Total: ₹{{ order.total }}</strong>
+          </div>
+        </div>
+        {% endfor %}
+      {% else %}
+        <p class="muted">You haven't placed any orders yet.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

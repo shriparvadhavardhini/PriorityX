@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}PriorityX — Shop Smarter. Deliver Faster.{% endblock %}
+{% block content %}
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">⚡ Now with faster Express Delivery</div>
+    <h1 class="hero-title">SHOP SMARTER.<br>DELIVER FASTER.</h1>
+    <p class="hero-subtitle">Your next-generation shopping experience with PriorityX.</p>
+    <div class="hero-actions">
+      <a href="#categories" class="btn btn-primary">EXPLORE PRODUCTS</a>
+      <a href="{{ url_for('products_page') }}?category=Medical" class="btn btn-glass">⚡ EXPRESS DELIVERY</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="floating-object" id="floatingObject">
+      <div class="cube">
+        <div class="cube-face front">🛍️</div>
+        <div class="cube-face back">⚡</div>
+        <div class="cube-face right">📦</div>
+        <div class="cube-face left">🛒</div>
+        <div class="cube-face top">✨</div>
+        <div class="cube-face bottom">💳</div>
+      </div>
+      <div class="cube-shadow"></div>
+    </div>
+  </div>
+</section>
+
+<section class="categories" id="categories">
+  <div class="section-head">
+    <h2>Shop by Category</h2>
+    <p>Ten curated categories. Endless possibilities.</p>
+  </div>
+
+  <div class="category-grid" id="categoryGrid">
+    <!-- injected by script.js -->
+  </div>
+</section>
+
+<section class="perks">
+  <div class="perk-card">
+    <div class="perk-icon">⚡</div>
+    <h3>Express Delivery</h3>
+    <p>Same-day delivery on thousands of essentials.</p>
+  </div>
+  <div class="perk-card">
+    <div class="perk-icon">🔒</div>
+    <h3>Secure Checkout</h3>
+    <p>Your data and payments are always protected.</p>
+  </div>
+  <div class="perk-card">
+    <div class="perk-icon">↩️</div>
+    <h3>Easy Returns</h3>
+    <p>Hassle-free returns within 7 days.</p>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", loadCategories);
+</script>
+{% endblock %}
